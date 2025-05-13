@@ -176,3 +176,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Add counter functionality for the + and - buttons in the carousel items
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all item footers in the carousel
+  const itemFooters = document.querySelectorAll('.item-footer');
+  
+  // Add event listeners to each footer
+  itemFooters.forEach(footer => {
+    const minusBtn = footer.querySelector('.add-btn:first-of-type');
+    const plusBtn = footer.querySelector('.add-btn:last-of-type');
+    const countSpan = footer.querySelector('span:nth-of-type(3)'); // The counter span
+    
+    // Initialize counter
+    let count = 0;
+    
+    // Add click event for minus button
+    minusBtn.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent event bubbling
+      if (count > 0) {
+        count--;
+        countSpan.textContent = count;
+      }
+    });
+    
+    // Add click event for plus button
+    plusBtn.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent event bubbling
+      count++;
+      countSpan.textContent = count;
+    });
+  });
+});
